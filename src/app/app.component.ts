@@ -1,10 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {NgForOf} from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {NavigationComponent} from './navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgForOf, RouterLink, RouterLinkActive],
+  imports: [
+    MatSidenavModule,
+    NavigationComponent
+  ],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss'
