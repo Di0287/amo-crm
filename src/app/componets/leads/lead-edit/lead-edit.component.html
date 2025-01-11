@@ -1,1 +1,70 @@
-<p>lead-edit works!</p>
+<div class="form-body p-5 w-full h-full">
+  <p class="py-3">Редактирование сделки</p>
+
+  <ng-container *ngIf="!Loader$; else loading">
+    <mat-form-field>
+      <mat-label>Название</mat-label>
+      <input matInput [(ngModel)]="lead.name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Бюджет</mat-label>
+      <input matInput [(ngModel)]="lead.price">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Этап</mat-label>
+      <mat-select [(value)]="lead.status_id">
+        <ng-container *ngFor="let status of statuses">
+          <mat-option [value]="status.id">{{ status.name }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <ng-container *ngFor="let cf of lead.custom_fields_values">
+      <div [ngSwitch]="cf.field_type">
+        <ng-template ngSwitchCase="textarea">
+          <mat-form-field>
+            <mat-label>{{ cf.field_name }}</mat-label>
+            <textarea matInput [(ngModel)]="cf.values"></textarea>
+          </mat-form-field>
+        </ng-template>
+        <ng-template ngSwitchCase="text">
+          <mat-form-field>
+            <mat-label>{{ cf.field_name }}</mat-label>
+            <input matInput [(ngModel)]="cf.values">
+          </mat-form-field>
+        </ng-template>
+
+        <ng-template ngSwitchCase="checkbox">
+          <mat-checkbox class="mb-4" [(ngModel)]="cf.values">{{ cf.field_name }}</mat-checkbox>
+        </ng-template>
+
+        <ng-template ngSwitchCase="select">
+          <mat-form-field>
+            <mat-label>{{ cf.field_name }}</mat-label>
+            <mat-select [(value)]="cf.values">
+              <ng-container *ngFor="let option of selectOptions(cf.field_id)">
+                <mat-option [value]="option.id">{{ option.value }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </ng-template>
+      </div>
+    </ng-container>
+
+
+    <hr class="my-5 w-full">
+    <div class="example-button-row w-full">
+      <button
+        mat-raised-button
+        class="mat-btm"
+        (click)="setLead()"
+      >
+        Сохранить
+      </button>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="flex h-full w-full justify-center items-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

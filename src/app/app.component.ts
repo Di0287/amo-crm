@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {NgForOf} from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {NavigationComponent} from './navigation/navigation.component';
 

@@ -1,1 +1,43 @@
-<p>leads works!</p>
+<div class="p-5 w-full h-full">
+  <p class="py-3">Список сделок</p>
+  <ng-container *ngIf="!Loader$; else loading">
+    <mat-accordion>
+      <ng-container *ngFor="let lead of Leads$">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title># {{ lead.id }}</mat-panel-title>
+            <mat-panel-description>
+              {{ lead.name }} / {{ lead.price }} ₽
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <hr class="mb-5">
+          <table mat-table [dataSource]="CustomFieldsLead(lead?.custom_fields_values ?? [])"
+                 class="mat-elevation-z8 lead-table">
+            <ng-container matColumnDef="name">
+              <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+            </ng-container>
+            <ng-container matColumnDef="value">
+              <td mat-cell *matCellDef="let element"> {{ element.value }}</td>
+            </ng-container>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <hr class="my-5">
+          <div class="example-button-row">
+            <button
+              mat-raised-button
+              class="mat-btm"
+              [routerLink]="['/leads', lead.id]"
+            >
+              Редактировать
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+  </ng-container>
+  <ng-template #loading>
+    <div class="flex h-full w-full justify-center items-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

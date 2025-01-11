@@ -4,6 +4,7 @@ import {LeadsComponent} from './componets/leads/leads.component';
 import {LeadAddComponent} from './componets/leads/lead-add/lead-add.component';
 import {LeadEditComponent} from './componets/leads/lead-edit/lead-edit.component';
 import {ContactsComponent} from './componets/contacts/contacts.component';
+import {LeadsStatusComponent} from './componets/leads/lead-status/leads-status.component';
 
 export const routes: Routes = [
   {
@@ -14,16 +15,18 @@ export const routes: Routes = [
   {
     path:'leads',
     component: LeadsComponent,
-    children: [
-      {
-        path:'lead',
-        component: LeadAddComponent,
-      },
-      {
-        path:'lead:id',
-        component: LeadEditComponent,
-      },
-    ]
+  },
+  {
+    path:'leads/add',
+    component: LeadAddComponent,
+  },
+  {
+    path:'leads/stages',
+    component: LeadsStatusComponent,
+  },
+  {
+    path:'leads/:id',
+    component: LeadEditComponent,
   },
   {
     path: 'contacts',

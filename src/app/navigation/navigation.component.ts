@@ -40,6 +40,6 @@ export class NavigationComponent {
   protected readonly routeList: { path: string; name: string }[] = [
     {path: '/leads', name: 'СДЕЛКИ'},
     {path: '/contacts', name: 'КОНТАКТЫ'},
-    {path: '/stages', name: 'ЭТАПЫ'},
+    {path: '/leads/stages', name: 'ЭТАПЫ'},
   ];
 }

@@ -1,0 +1,26 @@
+<div class="p-5 w-full h-full">
+  <p class="py-3">Статус сделок</p>
+  <ng-container *ngIf="!Loader$; else loading">
+    <div cdkDropListGroup class="flex flex-nowrap">
+      <div class="example-container" *ngFor="let status of Statuses$">
+        <h2>{{ status.name }}</h2>
+        <div
+          cdkDropList
+          [id]="status.id"
+          [cdkDropListData]="status.leads"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          @for (item of status.leads; track item) {
+            <div class="example-box" cdkDrag [cdkDragData]="item">{{item.lead_name}}</div>
+          }
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+  <ng-template #loading>
+    <div class="flex h-full w-full justify-center items-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>

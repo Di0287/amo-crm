@@ -1,0 +1,25 @@
+.lead-table {
+  width: 100%;
+}
+
+.mat-column-name {
+  width: 200px;
+  border-right: 1px solid silver;
+  padding-right: 24px;
+  text-align: left;
+}
+
+.mat-mdc-row{
+  height: 30px;
+}
+
+.example-button-row {
+  display: flex;
+  justify-content: center;
+
+  .mat-btm {
+    width: 250px;
+    border-radius: 10px;
+  }
+}
+
